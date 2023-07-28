@@ -1,0 +1,23 @@
+{
+    "editor.formatOnSave": true,
+    "python.formatting.provider": "none",
+    "python.formatting.blackArgs": [
+        "88","--line-length"
+    ],
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true  ,
+    "python.linting.flake8Enabled": true  ,
+    "python.linting.flake8Args": [
+        "88","--max-line-length"
+    ],
+    "[python]":{
+        "diffEditor.ignoreTrimWhitespace": false,
+        "gitlens.codeLens.symbolScopes": [
+            "!Module"
+        ],
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": false,
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
+
+}
