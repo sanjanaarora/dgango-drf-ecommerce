@@ -9,9 +9,9 @@ class Category(MPTTModel, models.Model):
     name = models.CharField(max_length=100)
     parent = TreeForeignKey("self", on_delete=models.PROTECT, null=True, blank=True)
     description = models.TextField(blank=True, null=True)
-    photo = models.ImageField(upload_to="images/", null=True)
-    slug = models.SlugField(editable=False)
-    ordering = models.IntegerField(default=0)
+    photo = models.ImageField(upload_to="images/", null=True, blank=True)
+    slug = models.SlugField(editable=False, null=True)
+    ordering = models.IntegerField(default=0, null=True, blank=True)
     is_featured = models.BooleanField(default=False)
 
     class MPTTMeta:
@@ -24,8 +24,11 @@ class Category(MPTTModel, models.Model):
         return "/%s/" % (self.slug)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
+
+    def __unicode__(self):
+        return "%s%s" % ("-" * self.level, self.name)
 
     @property
     def photo_preview(self):
